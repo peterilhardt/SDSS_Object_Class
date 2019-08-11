@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Which Astronomical Object?</title>
+  <style>
+  body{
+    font-family: sans-serif;
+    background-color: Black;
+  }
+  .button {
+    background-color: Red;
+    border: none;
+    color: White;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  .card {
+    border: 1px solid #ccc;
+    background-color: White;
+    font-size: 20px;
+    padding: 10px;
+    width: 300px;
+    margin: auto;
+  }
+  </style>
+
+</head>
+
+<body align="center">
+
+  <h1 style="color:White; font-size:50px;" align="center">What Astronomical Object Is It?</h1>
+
+  <h2 style="color:White;" align="center">Enter the redshift and color of the object and a class prediction is returned.</h2>
+
+  <h3 style="color:White;" align="center"><i>'u', 'g', and 'r' refer to the ultraviolet, green, and red filter magnitudes used by the Sloan Digital Sky Survey.</i></h3>
+
+  <br>
+  <br>
+
+  <form action="/predict_object/" method="post">
+
+    <div class="card" align="center">
+
+      <b>Redshift:</b>
+      <br>
+        <input type="text" name="redshift">
+      <br>
+      <br>
+      <br>
+      
+      <b>u-g color:</b>
+      <br>
+        <input type="text" name="u-g">
+      <br>
+      <br>
+      <br>
+
+      <b>g-r color:</b>
+      <br>
+        <input type="text" name="g-r">
+      <br>
+  
+
+    </div>
+
+  <br>
+  <br>
+  <br>
+
+  <button type="submit" class="button" align="center">
+    <b>Identify</b>
+  </button>
+  </form>
+
+  <br>
+
+  {% if message %}
+  <h2 style="color:White">{{message}}</h2>
+  <br>
+  <img src={{ url_for('static', filename=image) }} style="width:700px;height:500px;" align='center'>
+  {% endif %}
+
+</body>
+</html>
